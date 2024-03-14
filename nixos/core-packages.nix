@@ -10,7 +10,7 @@
   environment.systemPackages = with pkgs; [
     unstable.alacritty
     albert
-    anki
+    unstable.anki
     #ckb-next
     google-chrome
     #wpsoffice
