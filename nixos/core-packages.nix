@@ -76,8 +76,9 @@
     scrot
     #simplescreenrecorder
     #spotify
+    starship
     #sublime4
-    #telegram-desktop
+    telegram-desktop
     tree
     variety
     #vivaldi

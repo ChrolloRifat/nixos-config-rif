@@ -160,7 +160,6 @@
   #nixpkgs.config.allowUnfree = true;
   #nixpkgs.config.nvidia.acceptLicense = true;
 
-  # Using the unstable channel
   nixpkgs = {
     config = {
     allowUnfree = true;
