@@ -22,7 +22,6 @@
       ./desktops/hyprland.nix
       ./desktops/dwm.nix
       ./desktops/qtile.nix
-      #./desktops/openbox.nix
       ./desktops/leftwm.nix
     ];
 
@@ -237,7 +236,7 @@
   #services.dbus.enable = true;
 
   # for wayland dark theme  
-  #programs.dconf.enable = true;
+  programs.dconf.enable = true;
 
   security.polkit.enable = true;
   systemd = {
