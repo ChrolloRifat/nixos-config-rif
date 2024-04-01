@@ -5,11 +5,11 @@
 { config, pkgs, ... }:
 
 {
-  #services.xserver.displayManager.defaultSession = "none+dwm";
+  #services.xserver.displayManager.defaultSession = "none+dusk";
   services.xserver.windowManager.dwm.enable = true;
   nixpkgs.overlays = [
   (final: prev: {
-    dwm = prev.dwm.overrideAttrs (old: { src = /home/rif/.config/arco-dwm ;});
+    dwm = prev.dwm.overrideAttrs (old: { src = /home/erik/.config/arco-dusk ;});
   })
   ];
 

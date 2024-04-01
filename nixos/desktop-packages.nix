@@ -24,7 +24,7 @@
     jetbrains-mono
     kate
     lolcat
-    #lxappearance
+    lxappearance
     mako
     materia-kde-theme
     micro

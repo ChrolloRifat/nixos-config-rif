@@ -4,8 +4,8 @@
 # https://releases.nixos.org/nixos/unstable/
 
 { config, pkgs, ... }:
-{
 
+{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -17,17 +17,22 @@
       #./samba.nix
       ./env-vars.nix
       #./virtualbox.nix
-      ./desktops/awesome.nix
-      ./desktops/bspwm.nix
-      ./desktops/hyprland.nix
-      ./desktops/dwm.nix
-      ./desktops/qtile.nix
+      #./desktops/awesome.nix
+      #./desktops/i3wm.nix
+      #./desktops/bspwm.nix
+      #./desktops/hyprland.nix
+      #./desktops/dwm.nix
+      #./desktops/chadwm.nix             #does not work
+      #./desktops/qtile.nix
+      #./desktops/hlwm.nix               #does not work
       #./desktops/openbox.nix
-      ./desktops/leftwm.nix
+      #./desktops/leftwm.nix
+      #./desktops/dusk.nix		           #does not work
+	  #./desktops/wordpress.nix
     ];
 
-
-
+  # Bootloader.
+  
   # Bootloader for Rif's Laptop
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -108,6 +113,13 @@
     xkbVariant = "";
   };
 
+  # Select internationalisation properties.
+  #console = {
+    #keyMap = "be-latin1";
+    #packages=[ pkgs.terminus_font ];
+    #font="${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
+    #useXkbConfig = true; # use xkbOptions in tty.
+  #};
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -132,8 +144,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  
-
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rif = {
@@ -141,30 +151,20 @@
     description = "Rif";
     extraGroups = [ "mlocate" "networkmanager" "wheel" "samba" "vboxusers" ];
     packages = with pkgs; [
-      firefox-devedition
+      firefox
       kate
       neovim
     ];
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = false;
-  #services.xserver.displayManager.autoLogin.user = "rif";
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "rif";
 
   # Allow unfree packages
-  #nixpkgs.config.allowUnfree = true;
-  #nixpkgs.config.nvidia.acceptLicense = true;
-
-  # Add unstable branch for packages
-  nixpkgs = {
-	  config = {
-		  allowUnfree = true;
-		  packageOverrides = pkgs: {
-			  unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {};
-		  };
-	  };
-  };
-
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
+  
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
 
@@ -195,7 +195,7 @@
     ipv4 = true;
     ipv6 = true;
     publish = {
-      enable = true;
+		  enable = true;
       workstation = true;
   	};
   };
@@ -215,17 +215,6 @@
       . ~/.bashrc-personal
     '';
   };
-  
-  # Enable zsh shell
-  programs.zsh.enable = true;
-
-  # Use zsh as default shell for all users
-  users.defaultUserShell = pkgs.zsh;
-  
-  # Choose whether a user should use the default shell
-  users.users.rif.useDefaultShell = true;
-  
-  users.users.rif.shell = pkgs.zsh;
 
   #programs.steam.enable =  true;
 
@@ -278,6 +267,5 @@
 
  nixpkgs.config.permittedInsecurePackages = [
 	"openssl-1.1.1w" "electron-19.1.9"
- ];
-
+];
 }

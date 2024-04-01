@@ -11,7 +11,7 @@
     unstable.alacritty
     albert
     unstable.anki
-    #ckb-next
+    ckb-next
     google-chrome
     #wpsoffice
     arandr
@@ -27,7 +27,7 @@
     curl
     dex
     #discord
-    #dmenu
+    dmenu
     #dropbox
     duf
     edid-decode
@@ -35,7 +35,7 @@
     evince
     feh
     #filezilla
-    #firefox
+    firefox-devedition
     flameshot
     font-manager
     fsearch
@@ -52,8 +52,9 @@
     #inkscape
     #insync
     #inxi
+    unstable.keepassxc
     killall
-    kitty
+    unstable.kitty
     libgccjit
     llvmPackages_17.libcxxClang
     lm_sensors
@@ -70,7 +71,7 @@
     #ookla-speedtest
     #qbittorrent-qt5
     platinum-searcher
-    #polybar
+    polybar
     qt6Packages.qtstyleplugin-kvantum
     ripgrep
     scrot
@@ -92,6 +93,7 @@
     xorg.xkill
     #yakuake
     zsh
+    zsh-autosuggestions
     zsh-completions
     zsh-syntax-highlighting
   ];
