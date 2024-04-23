@@ -1,43 +1,22 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-# https://releases.nixos.org/nixos/unstable/
 
 { config, pkgs, ... }:
-{
 
+{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./core-packages.nix
-      ./desktop-packages.nix
-      #./home-manager.nix
-      #./nvidia.nix
-      #<home-manager/nixos>
-      #./samba.nix
-      ./env-vars.nix
-      #./virtualbox.nix
-      ./desktops/awesome.nix
-      ./desktops/bspwm.nix
-      ./desktops/hyprland.nix
-      ./desktops/dwm.nix
-      ./desktops/qtile.nix
-      ./desktops/leftwm.nix
     ];
 
-
-
-  # Bootloader for Rif's Laptop
+  # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
-  # Swappiness
-  boot.kernel.sysctl = { "vm.swappiness" = 10;};
+  #boot.loader.grub.theme = jeslie0.nixos-grub-themes.themes.catppuccin-frappe;
 
-  # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "nixos-riker"; # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -53,7 +32,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-    i18n.extraLocaleSettings = {
+  i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_GB.UTF-8";
     LC_IDENTIFICATION = "en_GB.UTF-8";
     LC_MEASUREMENT = "en_GB.UTF-8";
@@ -68,40 +47,10 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Disabling X11 - go for startx
-  #services.xserver.autorun = false;
-  #services.xserver.displayManager.startx.enable = true;
-
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  # for wayland dark theme  
-  #programs.dconf.enable = true;
-
-  # https://mynixos.com/options/services.xserver.desktopManager
-  
-  #services.xserver.desktopManager.budgie
-  #services.xserver.desktopManager.cde
-  #services.xserver.desktopManager.cinnamon
-  #services.xserver.desktopManager.deepin
-  #services.xserver.desktopManager.enlightenment
-  #services.xserver.desktopManager.gnome
-  #services.xserver.desktopManager.kodi
-  #services.xserver.desktopManager.lumina
-  #services.xserver.desktopManager.lxqt
-  #services.xserver.desktopManager.mate
-  #services.xserver.desktopManager.pantheon
-  #services.xserver.desktopManager.phosh
-  #services.xserver.desktopManager.plasma
-  #services.xserver.desktopManager.retroarch
-  #services.xserver.desktopManager.surf-display
-  #services.xserver.desktopManager.wallpaper
-  #services.xserver.desktopManager.xfce
-  #services.xserver.desktopManager.xterm
-
-  #https://mynixos.com/options/services.xserver.windowManager
-
-  # Configure keymap in X11
+   # Configure keymap in X11
   services.xserver = {
     layout = "us";
     xkbVariant = "";
@@ -140,10 +89,13 @@
     description = "Rif";
     extraGroups = [ "mlocate" "networkmanager" "wheel" "samba" "vboxusers" ];
     packages = with pkgs; [
-      git
       firefox-devedition
+      git
+      kitty
       kate
       neovim
+      lunarvim
+      nerdfonts
     ];
   };
 
@@ -281,3 +233,4 @@
  ];
 
 }
+
